@@ -2,14 +2,14 @@
 
 # Form implementation generated from reading ui file '/Users/peter/projects/inhousekeeper/UI/shotlist.ui'
 #
-# Created: Mon Jul 13 15:02:29 2015
-#      by: pyside-uic 0.2.15 running on PySide 1.2.2
+# Created: Wed Jul 15 19:39:06 2015
+#      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
 
 from PySide import QtCore, QtGui
 
-class UI_ShotList(object):
+class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(400, 300)
@@ -29,17 +29,15 @@ class UI_ShotList(object):
         self.artist_search = QtGui.QComboBox(Form)
         self.artist_search.setObjectName("artist_search")
         self.horizontalLayout.addWidget(self.artist_search)
+        self.refresh_button = QtGui.QToolButton(Form)
+        self.refresh_button.setObjectName("refresh_button")
+        self.horizontalLayout.addWidget(self.refresh_button)
         self.verticalLayout.addLayout(self.horizontalLayout)
-        #self.listView = QtGui.QListView(Form)
-        #self.listView.setObjectName("listView")
-        #self.verticalLayout.addWidget(self.listView)
-
         self.shotsQListWidget = QtGui.QListWidget(Form)
+        self.shotsQListWidget.setAlternatingRowColors(True)
+        self.shotsQListWidget.setViewMode(QtGui.QListView.ListMode)
+        self.shotsQListWidget.setObjectName("shotsQListWidget")
         self.verticalLayout.addWidget(self.shotsQListWidget)
-        
-
-
-
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
@@ -47,18 +45,5 @@ class UI_ShotList(object):
     def retranslateUi(self, Form):
         Form.setWindowTitle(QtGui.QApplication.translate("Form", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("Form", "IHkeeper", None, QtGui.QApplication.UnicodeUTF8))
+        self.refresh_button.setText(QtGui.QApplication.translate("Form", "R", None, QtGui.QApplication.UnicodeUTF8))
 
-
-
-
-class ShotList(QtGui.QWidget):
-    def __init__(self, parent=None):
-        super(ShotList, self).__init__(parent)
-        self.ui = UI_ShotList()
-        self.ui.setupUi(self)
- 
-if __name__ == "__main__":
- app = QtGui.QApplication(sys.argv)
- mySW = ShotList()
- mySW.show()
- sys.exit(app.exec_())
