@@ -2,6 +2,7 @@ import models as m
 import csv
 import sys
 import datetime
+import re
 #VFX SHOT,STATUS,TURNOVER DATE,TYPE,SHARED SHOT,ARTIST,LAST VERSION,SUBMISSION DATE,REVIEW NOTES,VFX DESCRIPTION
 #BB047_3185,FPP,06/24/2015,Eye Effect,,Josh Bolin,BB047_3185_comp_v001,07/09/2015,FPP,Night eye  Efect
 def input_csv(csvpath):
@@ -45,7 +46,43 @@ def input_csv(csvpath):
 					versionName=row[6]
 					)
 
-			
+
+def input_notes(note_text):
+    match= re.finditer(r'([A-Z]{2}\d{3}_\d{4})\tIH\t(.+?)\t([\s\S]+?)\t(.*)',
+    	note_text)
+    for row in match:
+    	shot =m.Shot.get(name=row.group(0))
+    	version=row.group(1).split['.'][0]
+    	note=row.group(2)
+    	status=m.Status.get(status=row.group(3))
+
+
+    	sub=m.Submission.get(versionName=version)
+    	sub.clientNote=note
+    	shot.status=status
+		sub.save() 
+		shot.save()
+
+def add_version(shotName,versionName,date=datetime.datetime.now().date(),artistName,artistNote):
+	shot=m.Shot.get(shotName)
+	status=m.Status.get(status='Pending Review')
+	artist=m.Artist.get(last=artistName.split(' ')[1])
+
+	sub=m.Submission.create(shot=shot,
+						clientNote='sub note: %s'%artistNote,
+						date=date,
+						artist=artist,
+						artistNote=artistNote
+						versionName=versionName.split['.'][0]
+						)
+
+        
+
+
+
+
+
+
 if __name__ == '__main__':
 	input_csv(sys.argv[1])
 

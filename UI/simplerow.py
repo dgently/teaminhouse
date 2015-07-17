@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/peter/projects/inhousekeeper/UI/simplerow.ui'
 #
-# Created: Wed Jul 15 19:05:26 2015
+# Created: Fri Jul 17 08:24:29 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -30,7 +30,8 @@ class Ui_Form(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.shot_label.sizePolicy().hasHeightForWidth())
         self.shot_label.setSizePolicy(sizePolicy)
-        self.shot_label.setMaximumSize(QtCore.QSize(80, 16777215))
+        self.shot_label.setMinimumSize(QtCore.QSize(90, 0))
+        self.shot_label.setMaximumSize(QtCore.QSize(90, 16777215))
         font = QtGui.QFont()
         font.setWeight(75)
         font.setBold(True)
